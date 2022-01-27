@@ -48,7 +48,7 @@ This will lead you through the various installations for the SDK-AC
 service.
 ### SERVER
 To install the server you need to download to have a Linux system to
-run it. This is a precondition.
+run it. Also you need to have nmap installed. This is a precondition.
 Then you need to:
 1. Install NodeJS if you do not have it.
 2. Then clone the GitHub repository and run: 'npm install'
