@@ -56,7 +56,6 @@ Then you need to:
 ```
 MONGO_URI="mongodb+srv://<username>:<password>@dnd-helper-sbhmd.mongodb.net/SDK-AC?retryWrites=true&w=majority"
 ```
---> To get the username and password contact Karlo Mijaljević
 4. After it all finishes you can run the server using the 'node Server.js'
 command or using the Development script 'npm run dev'.
 5. Then you have the server running on localhost:5000
