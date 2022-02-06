@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 // ===== Schema for the user data =====
 const VerifiedUserSchema = new Schema({
+  _id: Schema.Types.ObjectId,
   name: {
     type: String,
     required: true
@@ -22,6 +23,11 @@ const VerifiedUserSchema = new Schema({
     type: Boolean,
     default: false,
     required: true
+  },
+  role: {
+    type: String,
+    required: true,
+    default: "USER"
   }
 });
 

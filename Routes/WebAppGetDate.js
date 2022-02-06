@@ -1,15 +1,15 @@
 // ===== Requirements =====
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-// VerifiedUser Model
-const VerifiedUser = require('../Models/VerifiedUser');
+// WorkHours Model
+const WorkHours = require("../Models/WorkHours");
 
-// @route => GET /users
-// @desc => Get users endpoint for web app. Simply lists all users.
+// @route => GET /dates
+// @desc => Get date endpoint for web app. Simply lists all dates.
 // @access => Localhost only
 router.get("/", (req,res) => {
-  VerifiedUser.find({}, (err, result) => {
+  WorkHours.find({}, (err, result) => {
     if (err) {
       res.status(500).json({msg: err});
     } else {

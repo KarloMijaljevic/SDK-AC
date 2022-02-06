@@ -6,7 +6,7 @@ const router = express.Router();
 // ===== VerifiedUser Model =====
 const VerifiedUser = require('../Models/VerifiedUser');
 
-// ===== Commands Variables =====
+// ===== Constant Variables =====
 const regex = /([0-9\.]*)/ig;
 const commands = [
   "bash Scanner.sh",
@@ -27,8 +27,7 @@ function checkIfUsersHaveLeft() {
     execSync(commands[0]);
     let ipListResult = execSync(commands[1]).toString();
     users.forEach(user => {
-      Boolean isUserStillActive = validateUser(user, ipListResult);
-      if(!isUserStillActive) {
+      if(!validateUser(user.mac, ipListResult)) {
         VerifiedUser.findOneAndUpdate(
           { email: user.email },
           { active: false},
@@ -47,15 +46,15 @@ function checkIfUsersHaveLeft() {
 
 /**
  * If user is active in the DB but there is no more MAC address on the network
- * @param  {[VerifiedUser]} user --> VerifiedUser Object Model
+ * @param  {[String]} mac --> A MAC address to be checked
  * @param  {[String]} ipListResult --> Ip List (result of Scanner.sh)
  * @return {[Boolean]} Returns true if the user is active on the network, false
  * otherwise
  */
-async function validateUser(user, ipListResult) {
-  let usersIp = "";
+async function validateUser(mac, ipListResult) {
+  let usersIp = "noSuchUser";
   try {
-    usersIp = await execSync(commands[2] + `'${user.mac}'`).toString();
+    usersIp = await execSync(commands[2] + `'${mac}'`).toString();
   } catch(err) {
     userIp = "noSuchUser";
   }
@@ -70,3 +69,5 @@ async function validateUser(user, ipListResult) {
     }
   }
 }
+
+module.exports = checkIfUsersHaveLeft;

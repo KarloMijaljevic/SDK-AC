@@ -1,9 +1,10 @@
 // ===== Requirements =====
-const express = require('express');
+const mongoose = require("mongoose");
+const express = require("express");
 const router = express.Router();
 
 // VerifiedUser Model
-const VerifiedUser = require('../Models/VerifiedUser');
+const VerifiedUser = require("../Models/VerifiedUser");
 
 // @route   POST users
 // @desc    Register new user via web app
@@ -22,12 +23,13 @@ router.post('/', (req, res) => {
       return res.status(400).json({ msg: "User already exist" });
     }
     const newUser = new VerifiedUser({
+      _id: new mongoose.Types.ObjectId(),
       name,
       email,
       mac
     });
     newUser.save();
-    res.status(200).json({user: newUser });
+    res.status(200).json({msg: `User ${name} created successfully :)` });
   });
 });
 module.exports = router;
