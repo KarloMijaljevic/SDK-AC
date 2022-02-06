@@ -7,6 +7,7 @@ const VerifiedUser = require("../Models/VerifiedUser");
 
 // ===== Custom Functions =====
 const addUserToWorkday = require("../Functions/AddUserToWorkDay");
+const removeUserFromWorkDay = require("../Functions/RemoveUserFromWorkDay");
 
 /**
  * @route => POST /homeWork
@@ -21,10 +22,17 @@ router.post('/', (req, res) => {
     }
     VerifiedUser.findOne({ _id: id }).then(user => {
       if(user != null) {
-        if(!addUserToWorkday(id)) {
-          return res.status(500).json({msg: "Internal server error :_("});
+        if(user.active === true) {
+          if(!removeUserFromWorkDay(id)) {
+            return res.status(500).json({msg: "Internal server error :_("});
+          }
+          return res.status(200).json({msg: `Hello ${user.name}, you have ended working,`});
+        } else {
+          if(!addUserToWorkday(id)) {
+            return res.status(500).json({msg: "Internal server error :_("});
+          }
+          return res.status(200).json({msg: `Hello ${user.name}, you have started working,`});
         }
-        return res.status(200).json({msg: `Hello ${user.name}, you have started working,`});
       } else {
         return res.status(400).json({msg: "No such user. How...?"});
       }
