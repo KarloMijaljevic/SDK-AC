@@ -60,7 +60,7 @@ async function validateUser(user, res, id) {
   }
   execSync(commands[3]);
   if(ipListResult.includes(usersIp[1])) {
-    if(!addUserToWorkday(id)) {
+    if(!addUserToWorkday(id, false)) {
       return res.status(500).json({msg: "Internal server error :_("});
     }
     return res.status(200).json({msg: `Hello ${user.name}, door will open shortly :)`});

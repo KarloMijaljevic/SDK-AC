@@ -15,8 +15,18 @@ const WorkHoursSchema = new Schema({
     required: true,
     userName: String,
     userRole: String,
-    startTime: String,
-    endTime: String
+    currentStartTime: String,
+    userWorkTime: [{
+      type: Array,
+      required: true,
+      startTime: String,
+      endTime: String
+    }],
+    fullTime: {
+      type: String,
+      required: true,
+      default: "00:00"
+    }
   }]
 });
 

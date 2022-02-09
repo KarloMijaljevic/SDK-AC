@@ -10,7 +10,7 @@ const initialServerStart = require ("./Functions/InitialServerStart");
 
 // ===== Cron Jobs =====
 // const cron = require("node-cron");
-// const checkIfAnyoneLeft = cron.schedule("*/10 * * * *", () => {
+// const checkIfAnyoneLeft = cron.schedule("*/5 * * * *", () => {
 //   checkIfUsersHaveLeft();
 // });
 // const startWorkDay = cron.schedule("0 0 * * *", () => {
@@ -18,7 +18,7 @@ const initialServerStart = require ("./Functions/InitialServerStart");
 // });
 
 // ===== Start Cron Jobs =====
-// console.log("Will be running user check every 10 minutes");
+// console.log("Will be running user check every 5 minutes");
 // checkIfAnyoneLeft.start();
 // console.log("Will be starting work day every new day at 00:00");
 // startWorkDay.start();

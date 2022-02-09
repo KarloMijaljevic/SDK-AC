@@ -27,17 +27,19 @@ function checkIfUsersHaveLeft() {
     execSync(commands[0]);
     let ipListResult = execSync(commands[1]).toString();
     users.forEach(user => {
-      if(!validateUser(user.mac, ipListResult)) {
-        VerifiedUser.findOneAndUpdate(
-          { email: user.email },
-          { active: false},
-          null,
-          (err, docs) => {
-            if (err){
-              console.error(err);
+      if(user.fromHome === false) {
+        if(!validateUser(user.mac, ipListResult)) {
+          VerifiedUser.findOneAndUpdate(
+            { email: user.email },
+            { active: false},
+            null,
+            (err, docs) => {
+              if (err){
+                console.error(err);
+              }
             }
-          }
-        );
+          );
+        }
       }
     });
   });

@@ -24,6 +24,11 @@ const VerifiedUserSchema = new Schema({
     default: false,
     required: true
   },
+  fromHome: {
+    type: Boolean,
+    default: false,
+    required: true
+  },
   role: {
     type: String,
     required: true,

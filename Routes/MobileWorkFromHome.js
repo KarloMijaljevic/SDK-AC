@@ -22,13 +22,13 @@ router.post('/', (req, res) => {
     }
     VerifiedUser.findOne({ _id: id }).then(user => {
       if(user != null) {
-        if(user.active === true) {
+        if(user.active === true && user.fromHome === true) {
           if(!removeUserFromWorkDay(id)) {
             return res.status(500).json({msg: "Internal server error :_("});
           }
           return res.status(200).json({msg: `Hello ${user.name}, you have ended working,`});
         } else {
-          if(!addUserToWorkday(id)) {
+          if(!addUserToWorkday(id, true)) {
             return res.status(500).json({msg: "Internal server error :_("});
           }
           return res.status(200).json({msg: `Hello ${user.name}, you have started working,`});
