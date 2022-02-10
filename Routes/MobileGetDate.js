@@ -8,7 +8,7 @@ const WorkHours = require("../Models/WorkHours");
 // @route => post /userDates
 // @desc => Get date endpoint for mobile app. Simply lists dates when the user
 // has worked.
-// @access => From the mobile app, open port is needed for the server
+// @access => Private
 router.post("/", (req,res) => {
   const { id } = req.body;
   WorkHours.aggregate([{

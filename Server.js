@@ -36,8 +36,10 @@ const app = express();
 app.use(express.json());
 
 // ===== Routes =====
+app.use("/auth", require("./Routes/Auth"));
 app.use("/users", require("./Routes/WebAppGetUser"));
 app.use("/users", require("./Routes/WebAppPostUser"));
+app.use("/users", require("./Routes/WebAppPutUser"));
 app.use("/dates", require("./Routes/WebAppGetDate"));
 app.use("/userDates", require("./Routes/MobileGetDate"));
 app.use("/openDoor", require("./Routes/MobileOverWiFiStart"));

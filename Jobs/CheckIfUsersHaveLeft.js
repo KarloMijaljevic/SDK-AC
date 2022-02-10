@@ -12,7 +12,7 @@ const commands = [
   "bash Scanner.sh",
   "cat Files/IpList.txt",
   "cat Files/IpToMacList.txt | grep ",
-  "echo -n '' > Files/IpList.txt | echo -n '' > Files/IpToMacList.txt"
+  "rm Files/IpList.txt Files/IpToMacList.txt"
 ];
 
 /**
@@ -47,7 +47,7 @@ function checkIfUsersHaveLeft() {
 }
 
 /**
- * If user is active in the DB but there is no more MAC address on the network
+ * If user is active in the DB but there there is no MAC address on the network
  * @param  {[String]} mac --> A MAC address to be checked
  * @param  {[String]} ipListResult --> Ip List (result of Scanner.sh)
  * @return {[Boolean]} Returns true if the user is active on the network, false

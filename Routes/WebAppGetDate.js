@@ -2,13 +2,17 @@
 const express = require("express");
 const router = express.Router();
 
-// WorkHours Model
+// ===== Middleware =====
+const auth = require("../Middleware/Auth");
+
+// ===== WorkHours Model =====
 const WorkHours = require("../Models/WorkHours");
 
 // @route => GET /dates
 // @desc => Get date endpoint for web app. Simply lists all dates.
-// @access => Localhost only
-router.get("/", (req,res) => {
+// @access => Private
+router.get("/", auth, (req,res) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:8080");
   WorkHours.find({}, (err, result) => {
     if (err) {
       res.status(500).json({msg: err});

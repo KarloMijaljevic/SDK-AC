@@ -15,14 +15,14 @@ const commands = [
   "bash Scanner.sh",
   "cat Files/IpList.txt",
   "cat Files/IpToMacList.txt | grep ",
-  "echo -n '' > Files/IpList.txt | echo -n '' > Files/IpToMacList.txt"
+  "rm Files/IpList.txt Files/IpToMacList.txt"
 ];
 
 /**
  * @route => POST /openDoor
  * @desc => Open door and start work time over WiFi from
  * mobile app
- * @access => Localhost only
+ * @access => Private
 */
 router.post('/', (req, res) => {
     const { id } = req.body;

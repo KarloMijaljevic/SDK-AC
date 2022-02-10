@@ -8,12 +8,24 @@ const VerifiedUser = require("../Models/VerifiedUser");
 // ===== Middleware =====
 const auth = require("../Middleware/Auth");
 
-// @route => GET /users
-// @desc => Get users endpoint for web app. Simply lists all users.
+// @route => PUT /users
+// @desc => Updates one or more user parameters
 // @access => Private
 router.get("/", auth, (req,res) => {
   res.set("Access-Control-Allow-Origin", "http://localhost:8080");
-  VerifiedUser.find({}, (err, result) => {
+  const { id, name, password, email, mac, role } = req.body;
+  VerifiedUser.findAndUpdate(
+    {
+      _id: id
+    },
+    {
+      name: name,
+      password: password,
+      email: email,
+      mac: mac,
+      role: role,
+    },
+    (err, result) => {
     if (err) {
       res.status(500).json({msg: err});
     } else {

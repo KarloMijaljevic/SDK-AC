@@ -12,8 +12,7 @@ const removeUserFromWorkDay = require("../Functions/RemoveUserFromWorkDay");
 /**
  * @route => POST /homeWork
  * @desc => Start/End work from home
- * @access => Needs to be accesses from home so we would
- * need to open a port for this one
+ * @access => Private
 */
 router.post('/', (req, res) => {
     const { id } = req.body;
