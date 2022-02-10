@@ -15,7 +15,7 @@ const auth = require("../Middleware/Auth");
 // @access  Private
 router.post('/', auth, (req, res) => {
   res.set("Access-Control-Allow-Origin", "http://localhost:8080");
-  const { name, email, mac, password } = req.body;
+  const { name, email, mac, password, role } = req.body;
   // Simple validation
   if(!name || !email || !mac || !password) {
     return res.status(400).json({ msg: "Please enter all fields" });
@@ -30,7 +30,8 @@ router.post('/', auth, (req, res) => {
       name,
       password,
       email,
-      mac
+      mac,
+      role
     });
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
