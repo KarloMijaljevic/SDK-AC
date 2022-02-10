@@ -35,6 +35,10 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
+// ===== CORS Setup =====
+const cors = require("cors");
+app.use(cors({ origin: process.env.WEB_CLIENT_URL }));
+
 // ===== Routes =====
 app.use("/users", require("./Routes/WebAppGetUser"));
 app.use("/users", require("./Routes/WebAppPostUser"));
