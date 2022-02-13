@@ -7,12 +7,12 @@ const VerifiedUser = require("../Models/VerifiedUser");
 
 // ===== Middleware =====
 const auth = require("../Middleware/Auth");
+const webAppCors = require("../Middleware/WebAppCors");
 
 // @route => PUT /users
 // @desc => Updates one or more user parameters
 // @access => Private
-router.get("/", auth, (req,res) => {
-  res.set("Access-Control-Allow-Origin", "http://localhost:8080");
+router.get("/", [auth, webAppCors], (req,res) => {
   const { id, name, password, email, mac, role } = req.body;
   VerifiedUser.findAndUpdate(
     {

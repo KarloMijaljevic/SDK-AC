@@ -11,12 +11,12 @@ const VerifiedUser = require("../Models/VerifiedUser");
 
 // ===== Middleware =====
 const auth = require("../Middleware/Auth");
+const webAppCors = require("../Middleware/WebAppCors");
 
 // @route => post /auth
 // @desc => Send credidential to authenticate the user
 // @access => Private
-router.post("/", (req,res) => {
-  res.set("Access-Control-Allow-Origin", "http://localhost:8080");
+router.post("/", webAppCors, (req,res) => {
   const { email, password } = req.body;
   // Simple validation
   if(!email || !password) {

@@ -9,12 +9,12 @@ const VerifiedUser = require("../Models/VerifiedUser");
 
 // ===== Middleware =====
 const auth = require("../Middleware/Auth");
+const webAppCors = require("../Middleware/WebAppCors");
 
 // @route   POST users
 // @desc    Register new user via web app
 // @access  Private
-router.post('/', auth, (req, res) => {
-  res.set("Access-Control-Allow-Origin", "http://localhost:8080");
+router.post('/', [auth, webAppCors], (req, res) => {
   const { name, email, mac, password, role } = req.body;
   // Simple validation
   if(!name || !email || !mac || !password) {
