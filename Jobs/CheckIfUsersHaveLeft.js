@@ -59,6 +59,7 @@ async function validateUser(mac, ipListResult) {
     usersIp = await execSync(commands[2] + `'${mac}'`).toString();
   } catch(err) {
     userIp = "noSuchUser";
+    console.error(err);
   }
   if(userIp === "noSuchUser") {
     return false;

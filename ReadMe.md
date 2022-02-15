@@ -61,7 +61,7 @@ command or using the Development script 'npm run dev'.
 5. Then you have the server running on localhost:5000
 For the MOGNO_URI and the JWT secret contact Karlo Mijaljević.
 ### WEB app
--- Stella
+https://github.com/sandje00/sdk-access-control-web
 ### MOBILE app
 --- Dina
 
